@@ -1,4 +1,4 @@
-tree grammar TTree;
+tree grammar EgTree;
 
 options {
 
@@ -12,7 +12,7 @@ options {
     // the tree parser after the parser. It will also rebuild
     // the tree parser if the parser is rebuilt.
     //
-    tokenVocab = TParser;
+    tokenVocab = EgParser;
 
     // Use ANTLR built-in CommonToken for tree nodes
     //

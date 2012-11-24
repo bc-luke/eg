@@ -5,7 +5,7 @@
 // in it.
 //
 
-lexer grammar TLexer;
+lexer grammar EgLexer;
 
 options {
 
@@ -15,7 +15,7 @@ options {
    // the named class, which is where any supporting code and 
    // variables will be placed.
    //
-   superClass = AbstractTLexer;
+   superClass = AbstractEgLexer;
 }
 
 // What package should the generated source exist in?

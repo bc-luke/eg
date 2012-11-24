@@ -6,10 +6,10 @@ import org.antlr.stringtemplate.*;
 
 import java.io.*;
 
-import com.bigcommerce.eg.TLexer;
-import com.bigcommerce.eg.TParser;
-import com.bigcommerce.eg.TTree;
-import com.bigcommerce.eg.TParser.a_return;
+import com.bigcommerce.eg.EgLexer;
+import com.bigcommerce.eg.EgParser;
+import com.bigcommerce.eg.EgTree;
+import com.bigcommerce.eg.EgParser.a_return;
 
 
 /**
@@ -21,7 +21,7 @@ class Main {
 
     private static boolean makeDot = true;
 
-    static  TLexer lexer;
+    static  EgLexer lexer;
 
     /** Just a simple test driver for the ASP parser
      * to show how to call it.
@@ -33,7 +33,7 @@ class Main {
             {
                 // Create the lexer, which we can keep reusing if we like
                 //
-                lexer = new TLexer();
+                lexer = new EgLexer();
 
                 if  (args.length > 0)
                 {
@@ -134,7 +134,7 @@ class Main {
 
                 // Now we need an instance of our parser
                 //
-                TParser parser = new TParser(tokens);
+                EgParser parser = new EgParser(tokens);
 
                 System.out.println("file: " + source);
 
@@ -178,7 +178,7 @@ class Main {
                 try
                 {
                     if (parser.getNumberOfSyntaxErrors() == 0) {
-                        TTree walker = new TTree(new CommonTreeNodeStream(t));
+                        EgTree walker = new EgTree(new CommonTreeNodeStream(t));
                         System.out.println("    AST Walk Start\n");
                         pStart = System.currentTimeMillis();
                         walker.a();

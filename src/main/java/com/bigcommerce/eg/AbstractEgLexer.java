@@ -7,7 +7,7 @@ import org.antlr.runtime.RecognizerSharedState;
 /**
 
  * This is the super class for the lexer. It is extended by the lexer class
- * generated from TLexer.g.
+ * generated from EgLexer.g.
  *
  * Do not place code and declarations in the lexer .g files, use
  * a superclass like this and place all the support methods and
@@ -16,7 +16,7 @@ import org.antlr.runtime.RecognizerSharedState;
  *
  * @author Jim Idle - Temporal Wave LLC (jimi@idle.ws)
  */
-public abstract class AbstractTLexer
+public abstract class AbstractEgLexer
     extends Lexer
 
 {
@@ -24,7 +24,7 @@ public abstract class AbstractTLexer
      * Default constructor for the lexer, when you do not yet know what
      * the character stream to be provided is.
      */
-    public AbstractTLexer() {
+    public AbstractEgLexer() {
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class AbstractTLexer
      * @param input A valid character stream that contains the ruleSrc code you
      *              wish to compile (or lex at least)
      */
-    public AbstractTLexer(CharStream input) {
+    public AbstractEgLexer(CharStream input) {
         this(input, new RecognizerSharedState());
     }
 
@@ -44,7 +44,7 @@ public abstract class AbstractTLexer
      * @param input The character stream we are going to lex
      * @param state The shared state object, shared between all lexer comonents
      */
-    public AbstractTLexer(CharStream input, RecognizerSharedState state) {
+    public AbstractEgLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
 
