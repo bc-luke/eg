@@ -1,4 +1,4 @@
-package com.bigcommerce.cg;
+package com.bigcommerce.eg;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;

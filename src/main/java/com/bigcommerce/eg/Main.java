@@ -1,11 +1,15 @@
-package com.bigcommerce.cg;
+package com.bigcommerce.eg;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
 import org.antlr.stringtemplate.*;
 
 import java.io.*;
-import com.bigcommerce.cg.TParser.a_return;
+
+import com.bigcommerce.eg.TLexer;
+import com.bigcommerce.eg.TParser;
+import com.bigcommerce.eg.TTree;
+import com.bigcommerce.eg.TParser.a_return;
 
 
 /**

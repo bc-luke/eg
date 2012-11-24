@@ -23,7 +23,7 @@ options {
 //
 @header {
 
-    package com.bigcommerce.cg;
+    package com.bigcommerce.eg;
 }
 
 a : ^(SCRIPT stuff+)

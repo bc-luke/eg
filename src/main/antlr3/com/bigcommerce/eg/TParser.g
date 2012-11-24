@@ -42,7 +42,7 @@ tokens {
 //
 @header {
 
-    package com.bigcommerce.cg;
+    package com.bigcommerce.eg;
 }
 
 

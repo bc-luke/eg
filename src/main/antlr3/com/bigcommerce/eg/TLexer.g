@@ -22,7 +22,7 @@ options {
 //
 @header {
 
-    package com.bigcommerce.cg;
+    package com.bigcommerce.eg;
 }
 
 // This is just a simple lexer that matches the usual suspects
