@@ -13,9 +13,9 @@ import com.bigcommerce.eg.EgParser.a_return;
 
 
 /**
- * Test driver program for the ANTLR3 Maven Architype demo
+ * A test driver program for Entity Generator.
  *
- * @author Jim Idle (jimi@temporal-wave.com)
+ * @author Luke Eller (luke.eller@bigcommerce.com)
  */
 class Main {
 
