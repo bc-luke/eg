@@ -8,6 +8,7 @@ import java.io.*;
 
 import com.bigcommerce.eg.EgLexer;
 import com.bigcommerce.eg.EgParser;
+import com.bigcommerce.eg.EgParser.model_return;
 import com.bigcommerce.eg.EgTree;
 import com.bigcommerce.eg.EgParser.a_return;
 
@@ -154,7 +155,8 @@ class Main {
                 //
                 System.out.println("    Parser Start");
                 long pStart = System.currentTimeMillis();
-                a_return psrReturn = parser.a();
+                //a_return psrReturn = parser.a();
+                model_return psrReturn = parser.model();
                 long stop = System.currentTimeMillis();
                 System.out.println("      Parsed in " + (stop - pStart) + "ms.");
 

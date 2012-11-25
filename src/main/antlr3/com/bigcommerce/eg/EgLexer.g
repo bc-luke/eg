@@ -25,6 +25,17 @@ options {
     package com.bigcommerce.eg;
 }
 
+LBRACE : '{';
+RBRACE : '}';
+ASTERISK
+       : '*';
+LPAREN : '(';
+RPAREN : ')';
+COLON  : ':';
+COMMA  : ',';
+DOT    : '.';
+EQUALS : '=';
+
 // This is just a simple lexer that matches the usual suspects
 //
 

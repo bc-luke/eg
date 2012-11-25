@@ -36,6 +36,7 @@ import Ruleb;
 //
 tokens {
     SCRIPT;
+    MODEL;
 }
 
 // What package should the generated source exist in?
@@ -45,7 +46,15 @@ tokens {
     package com.bigcommerce.eg;
 }
 
-
+model
+   : entity* -> ^(MODEL entity*)
+   ;
+entity
+   : ID^ LBRACE! attribute* RBRACE!
+   ;
+attribute
+   : ID^ ASTERISK? COLON!
+   ;
 
 
 // This is just a simple parser for demo purpose

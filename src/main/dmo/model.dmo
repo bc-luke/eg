@@ -1,0 +1,8 @@
+customer {
+    id*:
+    first_name:
+}
+
+order {
+
+}
