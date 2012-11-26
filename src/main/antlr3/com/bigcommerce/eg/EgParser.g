@@ -53,9 +53,20 @@ entity
    : ID^ LBRACE! attribute* RBRACE!
    ;
 attribute
-   : ID^ ASTERISK? COLON!
+   : ID^ ASTERISK? COLON! type
    ;
 
+type
+   : type_int | type_string
+   ;
+
+type_int
+   : KW_INT
+   ;
+
+type_string
+   : KW_STRING (LPAREN INTEGER RPAREN)?
+   ;
 
 // This is just a simple parser for demo purpose
 //
@@ -76,7 +87,7 @@ expression
 
 addExpr
    : ID
-   | INT
+   | INTEGER
    | STRING
    ;
 

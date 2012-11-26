@@ -1,8 +1,9 @@
 customer {
-    id*:
-    first_name:
+    id*: int
+    first_name: string(255)
 }
 
 order {
-
+    id*: int
+    total_quantity: int
 }

@@ -36,6 +36,11 @@ COMMA  : ',';
 DOT    : '.';
 EQUALS : '=';
 
+KW_INT
+       : 'int';
+KW_STRING
+       : 'string';
+
 // This is just a simple lexer that matches the usual suspects
 //
 
@@ -48,7 +53,8 @@ SEMI: ';' ;
 ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
     ;
 
-INT :	'0'..'9'+
+INTEGER
+    :	'0'..'9'+
     ;
 
 COMMENT
