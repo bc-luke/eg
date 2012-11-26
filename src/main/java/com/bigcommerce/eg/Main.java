@@ -10,7 +10,6 @@ import com.bigcommerce.eg.EgLexer;
 import com.bigcommerce.eg.EgParser;
 import com.bigcommerce.eg.EgParser.model_return;
 import com.bigcommerce.eg.EgTree;
-import com.bigcommerce.eg.EgParser.a_return;
 
 
 /**

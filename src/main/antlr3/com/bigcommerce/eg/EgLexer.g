@@ -60,7 +60,7 @@ WS  :   ( ' '
         | '\t'
         | '\r'
         | '\n'
-        ) {skip();}
+        ) {$channel = HIDDEN;}
     ;
 
 STRING
