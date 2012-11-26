@@ -154,7 +154,7 @@ class Main {
                 //
                 System.out.println("    Parser Start");
                 long pStart = System.currentTimeMillis();
-                //a_return psrReturn = parser.a();
+
                 model_return psrReturn = parser.model();
                 long stop = System.currentTimeMillis();
                 System.out.println("      Parsed in " + (stop - pStart) + "ms.");
