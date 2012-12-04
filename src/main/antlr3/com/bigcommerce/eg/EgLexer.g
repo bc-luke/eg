@@ -25,35 +25,37 @@ options {
     package com.bigcommerce.eg;
 }
 
-// This is just a simple lexer that matches the usual suspects
-//
+LBRACE : '{';
+RBRACE : '}';
+ASTERISK
+       : '*';
+LPAREN : '(';
+RPAREN : ')';
+COLON  : ':';
+COMMA  : ',';
+DOT    : '.';
+EQUALS : '=';
 
-KEYSER : 'Keyser' ;
-SOZE   : 'Soze' ;
+INT    : 'int';
+STRING : 'string';
 
-ADD : '+' ;
-SEMI: ';' ;
+IDENTIFIER
+       : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+       ;
 
-ID  :	('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
-    ;
+INTEGER_LITERAL
+       : '0'..'9'+
+       ;
 
-INT :	'0'..'9'+
-    ;
-
-COMMENT
-    :   '//' ~('\n'|'\r')* '\r'? '\n' {skip();}
-    |   '/*' ( options {greedy=false;} : . )* '*/' {skip();}
+STRING_LITERAL
+    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
     ;
 
 WS  :   ( ' '
         | '\t'
         | '\r'
         | '\n'
-        ) {skip();}
-    ;
-
-STRING
-    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
+        ) {$channel = HIDDEN;}
     ;
 
 fragment
@@ -77,4 +79,5 @@ fragment
 UNICODE_ESC
     :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
+
 

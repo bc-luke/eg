@@ -26,16 +26,11 @@ options {
     tokenVocab = EgLexer;
 }
 
-// Import a grammar file, even though it does not really need it in this
-// simle demo parser. We do the import to show where imported grammars should be
-// stored for maven builds.
-//
-import Ruleb;
-
 // Some imaginary tokens for tree rewrites
 //
 tokens {
     SCRIPT;
+    MODEL;
 }
 
 // What package should the generated source exist in?
@@ -46,29 +41,26 @@ tokens {
 }
 
 
+model
+    : entity* -> ^(MODEL entity*)
+    ;
 
+entity
+    : IDENTIFIER^ LBRACE! attribute* RBRACE!
+    ;
 
-// This is just a simple parser for demo purpose
-//
-a  : b* EOF
-
-      -> ^(SCRIPT b*)
+attribute
+   : IDENTIFIER^ ASTERISK? COLON! type
    ;
 
-
-
-keyser
-   : KEYSER^ SOZE
+type
+   : intType | stringType
    ;
 
-expression
-   : addExpr (ADD^ addExpr)*
+intType
+   : INT
    ;
 
-addExpr
-   : ID
-   | INT
-   | STRING
+stringType
+   : STRING (LPAREN INTEGER_LITERAL RPAREN)? (EQUALS STRING)?
    ;
-
-

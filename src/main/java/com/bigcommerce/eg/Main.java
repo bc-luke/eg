@@ -5,7 +5,7 @@ import org.antlr.runtime.tree.*;
 import org.antlr.stringtemplate.*;
 
 import java.io.*;
-import com.bigcommerce.eg.EgParser.a_return;
+import com.bigcommerce.eg.EgParser.model_return;
 
 
 /**
@@ -15,7 +15,7 @@ import com.bigcommerce.eg.EgParser.a_return;
  */
 class Main {
 
-    private static boolean makeDot = false;
+    private static boolean makeDot = true;
 
     static  EgLexer lexer;
 
@@ -150,7 +150,7 @@ class Main {
                 //
                 System.out.println("    Parser Start");
                 long pStart = System.currentTimeMillis();
-                a_return psrReturn = parser.a();
+                model_return psrReturn = parser.model();
                 long stop = System.currentTimeMillis();
                 System.out.println("      Parsed in " + (stop - pStart) + "ms.");
 
