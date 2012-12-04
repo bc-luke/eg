@@ -5,11 +5,11 @@ import org.antlr.runtime.tree.*;
 import org.antlr.stringtemplate.*;
 
 import java.io.*;
-import com.bigcommerce.eg.TParser.a_return;
+import com.bigcommerce.eg.EgParser.a_return;
 
 
 /**
- * Test driver program for the ANTLR3 Maven Architype demo
+ * Test driver program for the ANTLR3 Maven Archetype demo
  *
  * @author Jim Idle (jimi@temporal-wave.com)
  */
@@ -17,7 +17,7 @@ class Main {
 
     private static boolean makeDot = false;
 
-    static  TLexer lexer;
+    static  EgLexer lexer;
 
     /** Just a simple test driver for the ASP parser
      * to show how to call it.
@@ -29,7 +29,7 @@ class Main {
             {
                 // Create the lexer, which we can keep reusing if we like
                 //
-                lexer = new TLexer();
+                lexer = new EgLexer();
 
                 if  (args.length > 0)
                 {
@@ -130,7 +130,7 @@ class Main {
 
                 // Now we need an instance of our parser
                 //
-                TParser parser = new TParser(tokens);
+                EgParser parser = new EgParser(tokens);
 
                 System.out.println("file: " + source);
 
@@ -174,7 +174,7 @@ class Main {
                 try
                 {
                     if (parser.getNumberOfSyntaxErrors() == 0) {
-                        TTree walker = new TTree(new CommonTreeNodeStream(t));
+                        EgTree walker = new EgTree(new CommonTreeNodeStream(t));
                         System.out.println("    AST Walk Start\n");
                         pStart = System.currentTimeMillis();
                         walker.a();
