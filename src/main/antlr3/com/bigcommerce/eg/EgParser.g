@@ -65,7 +65,7 @@ type_int
    ;
 
 type_string
-   : KW_STRING (LPAREN INTEGER RPAREN)?
+   : KW_STRING (LPAREN INTEGER RPAREN)? (EQUALS STRING)?
    ;
 
 // This is just a simple parser for demo purpose
