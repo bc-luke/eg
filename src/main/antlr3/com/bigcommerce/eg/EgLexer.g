@@ -48,36 +48,20 @@ INTEGER_LITERAL
        ;
 
 STRING_LITERAL
-    :  '"' ( ESC_SEQ | ~('\\'|'"') )* '"'
-    ;
+  : '"'
+    { StringBuilder b = new StringBuilder(); }
+    ( '"' '"'       { b.appendCodePoint('"');}
+    | c=~('"'|'\r'|'\n')  { b.appendCodePoint(c);}
+    )*
+    '"'
+    { setText(b.toString()); }
+  ;
 
 WS  :   ( ' '
         | '\t'
         | '\r'
         | '\n'
         ) {$channel = HIDDEN;}
-    ;
-
-fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
-
-fragment
-ESC_SEQ
-    :   '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\')
-    |   UNICODE_ESC
-    |   OCTAL_ESC
-    ;
-
-fragment
-OCTAL_ESC
-    :   '\\' ('0'..'3') ('0'..'7') ('0'..'7')
-    |   '\\' ('0'..'7') ('0'..'7')
-    |   '\\' ('0'..'7')
-    ;
-
-fragment
-UNICODE_ESC
-    :   '\\' 'u' HEX_DIGIT HEX_DIGIT HEX_DIGIT HEX_DIGIT
     ;
 
 

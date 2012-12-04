@@ -1,4 +1,4 @@
 customer {
     id*: int
-    first_name: string(255)
+    first_name: string(255) = "Arnold"
 }
