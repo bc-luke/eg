@@ -151,6 +151,7 @@ class Main {
                 System.out.println("    Parser Start");
                 long pStart = System.currentTimeMillis();
                 model_return psrReturn = parser.model();
+                System.out.println(((Tree) psrReturn.tree).toStringTree());
                 long stop = System.currentTimeMillis();
                 System.out.println("      Parsed in " + (stop - pStart) + "ms.");
 

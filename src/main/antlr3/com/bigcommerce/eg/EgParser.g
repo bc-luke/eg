@@ -31,6 +31,7 @@ options {
 tokens {
     SCRIPT;
     MODEL;
+    ATTRIBUTE;
 }
 
 // What package should the generated source exist in?
@@ -50,7 +51,7 @@ entity
     ;
 
 attribute
-   : IDENTIFIER^ ASTERISK? COLON! type
+   : IDENTIFIER ASTERISK? COLON type -> ^(ATTRIBUTE IDENTIFIER type)
    ;
 
 type
