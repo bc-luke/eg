@@ -24,26 +24,53 @@ options {
 @header {
 
     package com.bigcommerce.eg;
+    import com.bigcommerce.eg.ast.*;
 }
 
-a : ^(SCRIPT stuff+)
-  | SCRIPT
+@members {
+
+}
+
+model returns [Model m] 
+  : { $m = new Model(); }
+    ^(MODEL entity*)
   ;
 
-stuff
-  : keyser
-  | expression
+entity returns [Entity e]
+  : { $e = new Entity(); }
+    IDENTIFIER attribute* { $e.addAttribute($attribute.a); }
+  ;
+  
+attribute returns [Attribute a]
+  : ^(ATTRIBUTE IDENTIFIER ASTERISK? intType) 
+    {
+      $a = new IntAttribute();
+      $a.setIdentifier($IDENTIFIER.text); 
+      $a.setRequired($ASTERISK.text != null);
+    }
+  | ^(ATTRIBUTE IDENTIFIER ASTERISK? stringType) 
+    {
+      $a = new StringAttribute();
+      $a.setIdentifier($IDENTIFIER.text); 
+      $a.setRequired($ASTERISK.text != null);
+      ((StringAttribute)$a).setDefaultValue($stringType.s.getDefaultValue());
+      ((StringAttribute)$a).setSize($stringType.s.getSize());
+    }
   ;
 
-keyser
-  : ^(KEYSER SOZE)
-    { System.out.println("Found Keyser Soze!!"); }
-  ;
+intType
+   : INT (EQUALS INTEGER_LITERAL)?
+   ;
 
-expression
-  : ^(ADD expression expression)
-  | ID
-  | INT
-  | STRING
-  ;
+stringType returns [StringTypeDeclaration s]
+   : { $s = new StringTypeDeclaration(); }
+     STRING 
+     (
+       LPAREN size=INTEGER_LITERAL RPAREN { $s.setSize(Integer.parseInt($size.text)); }
+     )? 
+     (
+       EQUALS defaultValue=STRING_LITERAL { $s.setDefaultValue($defaultValue.text); }
+     )?
+   ;
+
 

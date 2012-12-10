@@ -178,7 +178,7 @@ class Main {
                         EgTree walker = new EgTree(new CommonTreeNodeStream(t));
                         System.out.println("    AST Walk Start\n");
                         pStart = System.currentTimeMillis();
-                        walker.a();
+                        walker.model();
                         stop = System.currentTimeMillis();
                         System.out.println("\n      AST Walked in " + (stop - pStart) + "ms.");
                      }

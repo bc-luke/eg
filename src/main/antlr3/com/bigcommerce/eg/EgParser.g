@@ -47,11 +47,11 @@ model
     ;
 
 entity
-    : IDENTIFIER^ LBRACE! attribute* RBRACE!
+    : IDENTIFIER LBRACE! attribute* RBRACE!
     ;
 
 attribute
-   : IDENTIFIER ASTERISK? COLON type -> ^(ATTRIBUTE IDENTIFIER type)
+   : IDENTIFIER ASTERISK? COLON type -> ^(ATTRIBUTE IDENTIFIER ASTERISK? type)
    ;
 
 type
@@ -59,9 +59,9 @@ type
    ;
 
 intType
-   : INT
+   : INT (EQUALS! INTEGER_LITERAL)?
    ;
 
 stringType
-   : STRING (LPAREN INTEGER_LITERAL RPAREN)? (EQUALS STRING_LITERAL)?
+   : STRING (LPAREN INTEGER_LITERAL RPAREN)? (EQUALS! STRING_LITERAL)?
    ;
