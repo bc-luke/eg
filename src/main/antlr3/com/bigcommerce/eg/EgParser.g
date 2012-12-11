@@ -48,11 +48,11 @@ model
     ;
 
 entity
-    : IDENTIFIER LBRACE attribute* RBRACE -> ^(ENTITY IDENTIFIER attribute*)
+    : IDENTIFIER LBRACE attribute* RBRACE -> ^(IDENTIFIER attribute*)
     ;
 
 attribute
-   : IDENTIFIER ASTERISK? COLON type -> ^(ATTRIBUTE IDENTIFIER ASTERISK? type)
+   : IDENTIFIER ASTERISK? COLON type -> ^(IDENTIFIER ASTERISK? type)
    ;
 
 type

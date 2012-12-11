@@ -28,23 +28,23 @@ options {
 }
 
 model returns [Model m] 
-  : 
+  : { $m = new Model(); }
     ^(MODEL entity*)
   ;
 
 entity returns [Entity e]
   : { $e = new Entity(); }
-    ^(ENTITY IDENTIFIER (attribute { $e.addAttribute($attribute.a); })*)
+    ^(IDENTIFIER (attribute { $e.addAttribute($attribute.a); })*)
   ;
   
 attribute returns [Attribute a]
-  : ^(ATTRIBUTE IDENTIFIER ASTERISK? intType) 
+  : ^(IDENTIFIER ASTERISK? intType) 
     {
       $a = new IntAttribute();
       $a.setIdentifier($IDENTIFIER.text); 
       $a.setRequired($ASTERISK.text != null);
     }
-  | ^(ATTRIBUTE IDENTIFIER ASTERISK? stringType) 
+  | ^(IDENTIFIER ASTERISK? stringType) 
     {
       $a = new StringAttribute();
       $a.setIdentifier($IDENTIFIER.text); 
