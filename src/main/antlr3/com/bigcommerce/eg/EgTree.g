@@ -27,12 +27,8 @@ options {
     import com.bigcommerce.eg.ast.*;
 }
 
-@members {
-
-}
-
 model returns [Model m] 
-  : { $m = new Model(); }
+  : 
     ^(MODEL entity*)
   ;
 
@@ -69,7 +65,7 @@ stringType returns [StringTypeDeclaration s]
        LPAREN size=INTEGER_LITERAL RPAREN { $s.setSize(Integer.parseInt($size.text)); }
      )? 
      (
-       EQUALS defaultValue=STRING_LITERAL { $s.setDefaultValue($defaultValue.text); }
+       defaultValue=STRING_LITERAL { $s.setDefaultValue($defaultValue.text); }
      )?
    ;
 
