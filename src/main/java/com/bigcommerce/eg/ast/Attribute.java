@@ -1,8 +1,6 @@
 package com.bigcommerce.eg.ast;
 
-import org.antlr.runtime.tree.CommonTree;
-
-public class Attribute extends CommonTree {
+public class Attribute {
 	private boolean isRequired;
 	private String identifier;
 

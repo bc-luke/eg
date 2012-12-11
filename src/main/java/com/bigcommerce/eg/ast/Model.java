@@ -3,9 +3,7 @@ package com.bigcommerce.eg.ast;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.antlr.runtime.tree.CommonTree;
-
-public class Model extends CommonTree {
+public class Model {
 	private List<Entity> entities;
 	
 	public Model() {

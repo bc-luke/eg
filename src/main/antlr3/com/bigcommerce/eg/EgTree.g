@@ -29,7 +29,9 @@ options {
 
 model returns [Model m] 
   : { $m = new Model(); }
-    ^(MODEL entity*)
+    ^(MODEL (
+      entity { $m.addEntity($entity.e);}
+    )*)
   ;
 
 entity returns [Entity e]
