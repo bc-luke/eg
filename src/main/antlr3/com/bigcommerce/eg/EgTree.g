@@ -34,7 +34,7 @@ model returns [Model m]
 
 entity returns [Entity e]
   : { $e = new Entity(); }
-    IDENTIFIER (attribute { $e.addAttribute($attribute.a); })*
+    ^(ENTITY IDENTIFIER (attribute { $e.addAttribute($attribute.a); })*)
   ;
   
 attribute returns [Attribute a]

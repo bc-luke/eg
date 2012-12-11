@@ -32,6 +32,7 @@ tokens {
     SCRIPT;
     MODEL;
     ATTRIBUTE;
+    ENTITY;
 }
 
 // What package should the generated source exist in?
@@ -47,7 +48,7 @@ model
     ;
 
 entity
-    : IDENTIFIER LBRACE! attribute* RBRACE!
+    : IDENTIFIER LBRACE attribute* RBRACE -> ^(ENTITY IDENTIFIER attribute*)
     ;
 
 attribute
