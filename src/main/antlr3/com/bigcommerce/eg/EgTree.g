@@ -16,7 +16,7 @@ options {
 
     // Use ANTLR built-in CommonToken for tree nodes
     //
-    ASTLabelType = CommonToken;
+    ASTLabelType = CommonTree;
 }
 
 // What package should the generated source exist in?
@@ -38,7 +38,7 @@ model returns [Model m]
 
 entity returns [Entity e]
   : { $e = new Entity(); }
-    IDENTIFIER attribute* { $e.addAttribute($attribute.a); }
+    IDENTIFIER (attribute { $e.addAttribute($attribute.a); })*
   ;
   
 attribute returns [Attribute a]
