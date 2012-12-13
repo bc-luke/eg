@@ -30,7 +30,6 @@ options {
 //
 tokens {
     SCRIPT;
-    MODEL;
     ATTRIBUTE;
     ENTITY;
 }
@@ -40,24 +39,24 @@ tokens {
 @header {
 
     package com.bigcommerce.eg;
+    
+    import com.bigcommerce.eg.ast.*;
 }
 
 
 model
-    : entity* -> ^(MODEL entity*)
+    : IDENTIFIER LBRACE entity* RBRACE  -> ^(IDENTIFIER<Model> entity*)
     ;
 
 entity
-    : IDENTIFIER LBRACE attribute* RBRACE -> ^(IDENTIFIER attribute*)
+    : IDENTIFIER LBRACE attribute* RBRACE -> ^(IDENTIFIER<Entity> attribute*)
     ;
 
 attribute
-   : IDENTIFIER ASTERISK? COLON type -> ^(IDENTIFIER ASTERISK? type)
+   : IDENTIFIER ASTERISK? COLON intType -> ^(IDENTIFIER<IntAttribute> ASTERISK? intType)
+   | IDENTIFIER ASTERISK? COLON stringType -> ^(IDENTIFIER<StringAttribute> ASTERISK? stringType)
    ;
 
-type
-   : intType | stringType
-   ;
 
 intType
    : INT (EQUALS! INTEGER_LITERAL)?

@@ -1,21 +1,21 @@
 package com.bigcommerce.eg.ast;
 
-public class Attribute {
-	private boolean isRequired;
-	private String identifier;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.tree.CommonTree;
+
+public class Attribute extends CommonTree {
+
+
+	public Attribute(Token t) {
+		super(t);
+	}
 
 	public boolean isRequired() {
-		return isRequired;
+		return true;
 	}
-	public void setRequired(boolean isRequired) {
-		this.isRequired = isRequired;
-	}
+
 	public String getIdentifier() {
-		return identifier;
+		return "id";
 	}
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-	}
-	
-	
+
 }

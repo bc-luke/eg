@@ -27,47 +27,37 @@ options {
     import com.bigcommerce.eg.ast.*;
 }
 
-model returns [Model m] 
-  : { $m = new Model(); }
-    ^(MODEL (
-      entity { $m.addEntity($entity.e);}
+model
+  :
+    ^(IDENTIFIER (
+      entity 
     )*)
   ;
 
-entity returns [Entity e]
-  : { $e = new Entity(); }
-    ^(IDENTIFIER (attribute { $e.addAttribute($attribute.a); })*)
+entity
+  :
+    ^(IDENTIFIER (attribute)*)
   ;
   
-attribute returns [Attribute a]
+attribute
   : ^(IDENTIFIER ASTERISK? intType) 
-    {
-      $a = new IntAttribute();
-      $a.setIdentifier($IDENTIFIER.text); 
-      $a.setRequired($ASTERISK.text != null);
-    }
+
   | ^(IDENTIFIER ASTERISK? stringType) 
-    {
-      $a = new StringAttribute();
-      $a.setIdentifier($IDENTIFIER.text); 
-      $a.setRequired($ASTERISK.text != null);
-      ((StringAttribute)$a).setDefaultValue($stringType.s.getDefaultValue());
-      ((StringAttribute)$a).setSize($stringType.s.getSize());
-    }
+
   ;
 
 intType
    : INT (EQUALS INTEGER_LITERAL)?
    ;
 
-stringType returns [StringTypeDeclaration s]
-   : { $s = new StringTypeDeclaration(); }
-     STRING 
+stringType
+   : 
+     STRING
      (
-       LPAREN size=INTEGER_LITERAL RPAREN { $s.setSize(Integer.parseInt($size.text)); }
+       LPAREN size=INTEGER_LITERAL RPAREN
      )? 
      (
-       defaultValue=STRING_LITERAL { $s.setDefaultValue($defaultValue.text); }
+       defaultValue=STRING_LITERAL
      )?
    ;
 

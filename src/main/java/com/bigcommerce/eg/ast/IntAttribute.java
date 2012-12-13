@@ -1,5 +1,9 @@
 package com.bigcommerce.eg.ast;
 
-public class IntAttribute extends Attribute {
+import org.antlr.runtime.Token;
 
+public class IntAttribute extends Attribute {
+	public IntAttribute(Token t) {
+		super(t);
+	}
 }

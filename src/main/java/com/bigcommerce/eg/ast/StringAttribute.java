@@ -1,25 +1,17 @@
 package com.bigcommerce.eg.ast;
 
-public class StringAttribute extends Attribute {
-	private String defaultValue;
-	private int size;
-	
-	public String getDefaultValue() {
-		return defaultValue;
-	}
+import org.antlr.runtime.Token;
 
-	public StringAttribute setDefaultValue(String defaultValue) {
-		this.defaultValue = defaultValue;
-		return this;
+public class StringAttribute extends Attribute {
+	public StringAttribute(Token t) {
+		super(t);
+	}
+	public String getDefaultValue() {
+		return "default";
 	}
 
 	public int getSize() {
-		return size;
-	}
-
-	public StringAttribute setSize(int size) {
-		this.size = size;
-		return this;
+		return 255;
 	}
 
 }

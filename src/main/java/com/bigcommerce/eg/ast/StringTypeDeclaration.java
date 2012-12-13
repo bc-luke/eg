@@ -1,25 +1,13 @@
 package com.bigcommerce.eg.ast;
 
-public class StringTypeDeclaration {
-	private int size;
-	private String defaultValue;
+public class StringTypeDeclaration extends TypeDeclaration {
 	
 	public int getSize() {
-		return size;
-	}
-
-	public StringTypeDeclaration setSize(int size) {
-		this.size = size;
-		return this;
+		return 255;
 	}
 
 	public String getDefaultValue() {
-		return defaultValue;
-	}
-
-	public StringTypeDeclaration setDefaultValue(String defaultValue) {
-		this.defaultValue = defaultValue;
-		return this;
+		return "default";
 	}
 
 }
