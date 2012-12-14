@@ -5,7 +5,10 @@ import org.antlr.runtime.tree.*;
 import org.antlr.stringtemplate.*;
 
 import java.io.*;
+import java.util.List;
+
 import com.bigcommerce.eg.EgParser.model_return;
+import com.bigcommerce.eg.ast.*;
 
 
 /**
@@ -165,9 +168,10 @@ class Main {
                 // http://www.graphviz.org
                 //
 
-                // Pick up the generic tree
+                // Pick up the Model
                 //
-                Tree t = (Tree)psrReturn.getTree();
+                Model t = (Model)psrReturn.getTree();
+
 
                 // NOw walk it with the generic tree walker, which does nothing but
                 // verify the tree really.

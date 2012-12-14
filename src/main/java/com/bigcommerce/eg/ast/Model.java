@@ -17,7 +17,7 @@ public class Model extends CommonTree {
 		List list = this.getChildren();
 		List<Entity> entities = new ArrayList<Entity>();
 		for (Object o : list) {
-			if (list instanceof Entity) {
+			if (o instanceof Entity) {
 				entities.add((Entity)o);
 			}
 		}
