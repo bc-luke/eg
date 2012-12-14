@@ -6,6 +6,8 @@ options {
     //
     language   = Java;
 
+    output    = AST;
+
     // Use the vocab from the parser (not the lexer)
     // The ANTLR Maven plugin knows how to work out the
     // relationships between the .g files and it will build
@@ -29,20 +31,18 @@ options {
 
 model
   :
-    ^(IDENTIFIER (
-      entity 
-    )*)
+    ^(IDENTIFIER<Model> ( entity )*)
   ;
 
 entity
   :
-    ^(IDENTIFIER (attribute)*)
+    ^(IDENTIFIER<Entity> (attribute)*)
   ;
   
 attribute
-  : ^(IDENTIFIER ASTERISK? intType) 
+  : ^(IDENTIFIER<IntAttribute> ASTERISK? intType) 
 
-  | ^(IDENTIFIER ASTERISK? stringType) 
+  | ^(IDENTIFIER<StringAttribute> ASTERISK? stringType) 
 
   ;
 
@@ -52,13 +52,7 @@ intType
 
 stringType
    : 
-     STRING
-     (
-       LPAREN size=INTEGER_LITERAL RPAREN
-     )? 
-     (
-       defaultValue=STRING_LITERAL
-     )?
+     STRING (LPAREN INTEGER_LITERAL RPAREN)? (STRING_LITERAL)?
    ;
 
 

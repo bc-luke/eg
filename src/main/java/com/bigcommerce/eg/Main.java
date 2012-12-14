@@ -164,7 +164,7 @@ class Main {
                 // We do something fairly cool here and generate a graphviz/dot
                 // specification for the tree, which will allow the users to visualize
                 // it :-) we only do that if asked via the -dot option though as not
-                // all users will hsve installed the graphviz toolset from
+                // all users will have installed the graphviz toolset from
                 // http://www.graphviz.org
                 //
 
@@ -182,9 +182,13 @@ class Main {
                         EgTree walker = new EgTree(new CommonTreeNodeStream(t));
                         System.out.println("    AST Walk Start\n");
                         pStart = System.currentTimeMillis();
-                        walker.model();
+                        
+                        EgTree.model_return walkerReturn = walker.model();
+                        
                         stop = System.currentTimeMillis();
                         System.out.println("\n      AST Walked in " + (stop - pStart) + "ms.");
+
+                        Model ast = (Model)walkerReturn.getTree();
                      }
                 }
                 catch(Exception w)

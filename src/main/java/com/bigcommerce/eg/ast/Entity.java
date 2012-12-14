@@ -12,6 +12,10 @@ public class Entity extends CommonTree {
 		super(t);
 	}
 	
+	public Entity(CommonTree node) {
+		super(node);
+	}
+	
 	public List<Attribute> getAttributes() {
 		@SuppressWarnings("rawtypes")
 		List list = this.getChildren();

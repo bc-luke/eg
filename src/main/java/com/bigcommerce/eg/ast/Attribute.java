@@ -14,6 +14,10 @@ public class Attribute extends CommonTree {
 	public Attribute(Token t) {
 		super(t);
 	}
+	
+	public Attribute(CommonTree node) {
+		super(node);
+	}
 
 	public boolean isRequired() {
 		
