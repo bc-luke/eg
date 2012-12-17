@@ -23,6 +23,11 @@ public class Attribute extends CommonTree {
 		
 		@SuppressWarnings("rawtypes")
 		List list = this.getChildren();
+
+		if (list == null) {
+			return false;
+		}
+
 		for (Object o : list) {
 			if (o instanceof CommonTree) {
 				CommonTree node = ((CommonTree)o);
@@ -37,7 +42,7 @@ public class Attribute extends CommonTree {
 	}
 
 	public String getIdentifier() {
-		return "id";
+		return this.getToken().getText();
 	}
 
 }

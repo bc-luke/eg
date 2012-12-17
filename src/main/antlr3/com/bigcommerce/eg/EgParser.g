@@ -45,16 +45,16 @@ tokens {
 
 
 model
-    : IDENTIFIER LBRACE entity* RBRACE  -> ^(IDENTIFIER<Model> entity*)
+    : IDENTIFIER LBRACE entity* RBRACE  -> ^(IDENTIFIER entity*)
     ;
 
 entity
-    : IDENTIFIER LBRACE attribute* RBRACE -> ^(IDENTIFIER<Entity> attribute*)
+    : IDENTIFIER LBRACE attribute* RBRACE -> ^(IDENTIFIER attribute*)
     ;
 
 attribute
-   : IDENTIFIER ASTERISK? COLON intType -> ^(IDENTIFIER<IntAttribute> ASTERISK? intType)
-   | IDENTIFIER ASTERISK? COLON stringType -> ^(IDENTIFIER<StringAttribute> ASTERISK? stringType)
+   : IDENTIFIER ASTERISK? COLON intType -> ^(IDENTIFIER ASTERISK? intType)
+   | IDENTIFIER ASTERISK? COLON stringType -> ^(IDENTIFIER ASTERISK? stringType)
    ;
 
 

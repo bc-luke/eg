@@ -170,10 +170,10 @@ class Main {
 
                 // Pick up the Model
                 //
-                Model t = (Model)psrReturn.getTree();
+                Tree t = (Tree)psrReturn.getTree();
 
 
-                // NOw walk it with the generic tree walker, which does nothing but
+                // Now walk it with the generic tree walker, which does nothing but
                 // verify the tree really.
                 //
                 try
@@ -184,11 +184,9 @@ class Main {
                         pStart = System.currentTimeMillis();
                         
                         EgTree.model_return walkerReturn = walker.model();
-                        
                         stop = System.currentTimeMillis();
+                        Model m = (Model)walkerReturn.getTree();
                         System.out.println("\n      AST Walked in " + (stop - pStart) + "ms.");
-
-                        Model ast = (Model)walkerReturn.getTree();
                      }
                 }
                 catch(Exception w)
