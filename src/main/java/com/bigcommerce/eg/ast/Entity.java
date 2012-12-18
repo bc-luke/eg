@@ -7,8 +7,6 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.tree.CommonTree;
 import org.antlr.runtime.tree.Tree;
 
-import com.bigcommerce.eg.EgParser;
-
 public class Entity extends CommonTree {
 
 	public Entity(Token t) {
@@ -24,7 +22,17 @@ public class Entity extends CommonTree {
 		if (t instanceof Attribute) {
 			String identifier = ((Attribute) t).getIdentifier();
 			if (this.hasAttribute(identifier)) {
-				throw new RuntimeException("Duplicate attribute \"" + identifier + "\" detected in entity \"" + getIdentifier() + "\"");
+				StringBuilder message = new StringBuilder();
+				message
+					.append("Duplicate attribute \"")
+					.append(identifier)
+					.append("\" detected in entity \"")
+					.append(getIdentifier())
+					.append("\" at ")
+					.append(t.getLine())
+					.append(":")
+					.append(t.getCharPositionInLine());
+				throw new RuntimeException(message.toString());
 			}
 		}
 		super.addChild(t);

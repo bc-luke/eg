@@ -45,7 +45,7 @@ tokens {
 
 
 model
-    : IDENTIFIER LBRACE entity* RBRACE  -> ^(IDENTIFIER entity*)
+    : IDENTIFIER LBRACE entity* RBRACE -> ^(IDENTIFIER entity*)
     ;
 
 entity

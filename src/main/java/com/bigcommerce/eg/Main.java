@@ -9,6 +9,8 @@ import java.util.List;
 
 import com.bigcommerce.eg.EgParser.model_return;
 import com.bigcommerce.eg.ast.*;
+import com.bigcommerce.eg.target.DotTarget;
+import com.bigcommerce.eg.target.Target;
 
 
 /**
@@ -176,6 +178,7 @@ class Main {
                 // Now walk it with the generic tree walker, which does nothing but
                 // verify the tree really.
                 //
+                Model model = null;
                 try
                 {
                     if (parser.getNumberOfSyntaxErrors() == 0) {
@@ -185,55 +188,20 @@ class Main {
                         
                         EgTree.model_return walkerReturn = walker.model();
                         stop = System.currentTimeMillis();
-                        Model m = (Model)walkerReturn.getTree();
+                        model = (Model)walkerReturn.getTree();
                         System.out.println("\n      AST Walked in " + (stop - pStart) + "ms.");
                      }
                 }
                 catch(Exception w)
                 {
-                    System.out.println("AST walk caused exception.");
-                    w.printStackTrace();
+                    System.err.println("AST walk caused exception.");
+                    System.err.println(w.getMessage());
                 }
 
                 if  (makeDot && tokens.size() < 4096)
                 {
-
-                    // Now stringify it if you want to...
-                    //
-                    // System.out.println(t.toStringTree());
-
-                    // Use the ANLTR built in dot generator
-                    //
-                    DOTTreeGenerator gen = new DOTTreeGenerator();
-
-                    // Which we can cause to generate the DOT specification
-                    // with the input file name suffixed with .dot. You can then use
-                    // the graphviz tools or zgrviewer (Java) to view the graphical
-                    // version of the dot file.
-                    //
-                    source = source.substring(0, source.length()-3);
-                    String outputName = source + "dot";
-
-                    System.out.println("    Producing AST dot (graphviz) file");
-
-                    // It produces a jguru string template.
-                    //
-                    StringTemplate st = gen.toDOT(t, new CommonTreeAdaptor());
-
-                    // Create the output file and write the dot spec to it
-                    //
-                    FileWriter outputStream = new FileWriter(outputName);
-                    outputStream.write(st.toString());
-                    outputStream.close();
-
-                    // Invoke dot to generate a .png file
-                    //
-                    System.out.println("    Producing png graphic for tree");
-                    pStart = System.currentTimeMillis();
-                    Process proc = Runtime.getRuntime().exec("dot -Tpng -o" + source + "png " + outputName);
-                    proc.waitFor();
-                    stop = System.currentTimeMillis();
-                    System.out.println("      PNG graphic produced in " + (stop - pStart) + "ms.");
+                	Target dotTarget = new DotTarget();
+                	dotTarget.generate(model);
                 }
             }
             catch (FileNotFoundException ex)
