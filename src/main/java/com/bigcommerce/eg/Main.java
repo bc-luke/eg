@@ -8,6 +8,7 @@ import java.io.*;
 import com.bigcommerce.eg.EgParser.model_return;
 import com.bigcommerce.eg.ast.*;
 import com.bigcommerce.eg.target.DotTarget;
+import com.bigcommerce.eg.target.MySqlTarget;
 import com.bigcommerce.eg.target.Target;
 
 
@@ -195,11 +196,12 @@ class Main {
                     System.err.println("AST walk caused exception.");
                     System.err.println(w.getMessage());
                 }
-
+                Target mySqlTarget = new MySqlTarget();
+                mySqlTarget.generate(model, "/Users/luke.eller/model");
                 if  (makeDot && tokens.size() < 4096)
                 {
                 	Target dotTarget = new DotTarget();
-                	dotTarget.generate(model);
+                	dotTarget.generate(model, "/Users/luke.eller/model");
                 }
             }
             catch (FileNotFoundException ex)

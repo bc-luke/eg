@@ -27,4 +27,8 @@ public class Model extends CommonTree {
 		}
 		return entities;
 	}
+	
+	public String getIdentifier() {
+		return this.getToken().getText();
+	}
 }

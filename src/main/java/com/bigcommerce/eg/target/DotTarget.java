@@ -1,6 +1,5 @@
 package com.bigcommerce.eg.target;
 
-import java.io.File;
 import java.io.FileWriter;
 
 import org.antlr.runtime.tree.CommonTreeAdaptor;
@@ -10,7 +9,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import com.bigcommerce.eg.GenerationException;
 import com.bigcommerce.eg.ast.Model;
 
-public class DotTarget extends AbstractTarget {
+public class DotTarget implements Target {
 
 	protected DOTTreeGenerator dotTreeGenerator;
 	
@@ -21,7 +20,7 @@ public class DotTarget extends AbstractTarget {
 	
 	@Override
 	public void generate(Model model) throws GenerationException {
-        generate(model, super.getSourceFileParent(model));
+        generate(model, FilenameHelper.getSourceFileParent(model));
 	}
 
 	@Override
@@ -31,9 +30,8 @@ public class DotTarget extends AbstractTarget {
         // the graphviz tools or zgrviewer (Java) to view the graphical
         // version of the dot file.
         //
-		String source = model.getToken().getInputStream().getSourceName();
-        String outputName = getAbsoluteOuputFilename(model, outputDirectory);
-
+        String dotOutputName = FilenameHelper.getSimpleFilename(model, "dot", outputDirectory);
+        String pngOutputName = FilenameHelper.getSimpleFilename(model, "png", outputDirectory);
         System.out.println("    Producing AST dot (graphviz) file");
 
         // It produces a jguru string template.
@@ -43,7 +41,7 @@ public class DotTarget extends AbstractTarget {
         // Create the output file and write the dot spec to it
         //
         try {
-	        FileWriter outputStream = new FileWriter(outputName + ".dot");
+	        FileWriter outputStream = new FileWriter(dotOutputName);
 	        outputStream.write(st.toString());
 	        outputStream.close();
         } catch (Exception e) {
@@ -54,18 +52,13 @@ public class DotTarget extends AbstractTarget {
         System.out.println("    Producing png graphic for tree");
         long pStart = System.currentTimeMillis();
         try {
-	        Process proc = Runtime.getRuntime().exec("dot -Tpng -o" + outputName + ".png " + outputName + ".dot");
+	        Process proc = Runtime.getRuntime().exec("dot -Tpng -o" + pngOutputName + " " + dotOutputName);
 	        proc.waitFor();
         } catch (Exception e) {
         	throw new GenerationException("Could not write the png graphic", e);
         }
         long stop = System.currentTimeMillis();
         System.out.println("      PNG graphic produced in " + (stop - pStart) + "ms.");
-	}
-	
-	
-	protected String getAbsoluteOuputFilename(Model model, String outputDirectory) {
-		return outputDirectory + '/' + super.getExtensionlessSourceFileName(model);
 	}
 
 }

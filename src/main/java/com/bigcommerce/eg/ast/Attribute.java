@@ -1,6 +1,5 @@
 package com.bigcommerce.eg.ast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.antlr.runtime.Token;

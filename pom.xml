@@ -61,9 +61,21 @@
             <version>3.4</version>
             <scope>compile</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-base</artifactId>
+            <version>r03</version>
+        </dependency>
 
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>google-releases</id>
+            <name>Google Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/google-releases</url>
+        </repository>
+    </repositories>
   <!--
 
     Tell Maven which other artifacts we need in order to
