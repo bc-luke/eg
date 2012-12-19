@@ -30,8 +30,8 @@ options {
 //
 tokens {
     SCRIPT;
-    MODEL;
     ATTRIBUTE;
+    ENTITY;
 }
 
 // What package should the generated source exist in?
@@ -39,29 +39,29 @@ tokens {
 @header {
 
     package com.bigcommerce.eg;
+    
+    import com.bigcommerce.eg.ast.*;
 }
 
 model
-    : entity* -> ^(MODEL entity*)
+    : IDENTIFIER LBRACE entity* RBRACE -> ^(IDENTIFIER entity*)
     ;
 
 entity
-    : IDENTIFIER^ LBRACE! attribute* RBRACE!
+    : IDENTIFIER LBRACE attribute* RBRACE -> ^(IDENTIFIER attribute*)
     ;
 
 attribute
-   : IDENTIFIER ASTERISK? COLON type -> ^(ATTRIBUTE IDENTIFIER type)
+   : IDENTIFIER ASTERISK? COLON intType -> ^(IDENTIFIER ASTERISK? intType)
+   | IDENTIFIER ASTERISK? COLON stringType -> ^(IDENTIFIER ASTERISK? stringType)
    ;
 
-type
-   : intType | stringType
-   ;
 
 intType
-   : INT
+   : INT (EQUALS! INTEGER_LITERAL)?
    ;
 
 stringType
-   : STRING (LPAREN INTEGER_LITERAL RPAREN)? (EQUALS STRING_LITERAL)?
+   : STRING (LPAREN! INTEGER_LITERAL RPAREN!)? (EQUALS! STRING_LITERAL)?
    ;
 

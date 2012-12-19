@@ -1,4 +1,7 @@
-customer {
-    id*: int
-    first_name: string(255) = "Arnold"
+store {
+    customer {
+        id*: int
+        first_name: string(255) = "Arnold"
+        last_name: string(255) = "Schwarzenegger"
+	}
 }

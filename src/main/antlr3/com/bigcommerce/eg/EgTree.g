@@ -6,6 +6,8 @@ options {
     //
     language   = Java;
 
+    output    = AST;
+
     // Use the vocab from the parser (not the lexer)
     // The ANTLR Maven plugin knows how to work out the
     // relationships between the .g files and it will build
@@ -16,7 +18,7 @@ options {
 
     // Use ANTLR built-in CommonToken for tree nodes
     //
-    ASTLabelType = CommonToken;
+    ASTLabelType = CommonTree;
 }
 
 // What package should the generated source exist in?
@@ -24,26 +26,33 @@ options {
 @header {
 
     package com.bigcommerce.eg;
+    import com.bigcommerce.eg.ast.*;
 }
 
-a : ^(SCRIPT stuff+)
-  | SCRIPT
+model
+  :
+    ^(IDENTIFIER<Model> ( entity )*)
   ;
 
-stuff
-  : keyser
-  | expression
+entity
+  :
+    ^(IDENTIFIER<Entity> (attribute)*)
+  ;
+  
+attribute
+  : ^(IDENTIFIER<IntAttribute> ASTERISK? intType) 
+
+  | ^(IDENTIFIER<StringAttribute> ASTERISK? stringType) 
+
   ;
 
-keyser
-  : ^(KEYSER SOZE)
-    { System.out.println("Found Keyser Soze!!"); }
-  ;
+intType
+   : INT (INTEGER_LITERAL)?
+   ;
 
-expression
-  : ^(ADD expression expression)
-  | ID
-  | INT
-  | STRING
-  ;
+stringType
+   : 
+     STRING (INTEGER_LITERAL)? (STRING_LITERAL)?
+   ;
+
 

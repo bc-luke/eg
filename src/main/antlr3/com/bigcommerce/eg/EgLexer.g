@@ -40,6 +40,8 @@ EQUALS : '=';
 INT    : 'int';
 STRING : 'string';
 
+MODEL  : 'model';
+
 IDENTIFIER
        : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
        ;
