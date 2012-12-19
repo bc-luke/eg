@@ -2,10 +2,8 @@ package com.bigcommerce.eg;
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
-import org.antlr.stringtemplate.*;
 
 import java.io.*;
-import java.util.List;
 
 import com.bigcommerce.eg.EgParser.model_return;
 import com.bigcommerce.eg.ast.*;
@@ -20,7 +18,7 @@ import com.bigcommerce.eg.target.Target;
  */
 class Main {
 
-    private static boolean makeDot = true;
+    private static boolean makeDot = false;
 
     static  EgLexer lexer;
 

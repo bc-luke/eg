@@ -47,12 +47,12 @@ attribute
   ;
 
 intType
-   : INT (EQUALS INTEGER_LITERAL)?
+   : INT (INTEGER_LITERAL)?
    ;
 
 stringType
    : 
-     STRING (LPAREN INTEGER_LITERAL RPAREN)? (STRING_LITERAL)?
+     STRING (INTEGER_LITERAL)? (STRING_LITERAL)?
    ;
 
 
