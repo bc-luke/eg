@@ -43,8 +43,9 @@ public class PopoTarget extends AbstractTarget {
 			.append(lineSeparator)
 			.append(lineSeparator)
 			.append("class ")
-			.append(LOWER_CAMEL.to(UPPER_CAMEL, entity.getIdentifier()))
+			.append(LOWER_UNDERSCORE.to(UPPER_CAMEL, entity.getIdentifier()))
 			.append(" {")
+			.append(lineSeparator)
 			.append(lineSeparator);
 		
 		for (Attribute attribute : entity.getAttributes()) {
@@ -52,21 +53,28 @@ public class PopoTarget extends AbstractTarget {
 				.append(lineSeparator);
 		}
 		
+		popo.append(lineSeparator)
+			.append('}');
+		
 		
 		return popo.toString();
 	}
 	
 	protected String generateProperty(Attribute attribute) {
-		return "";
+		StringBuilder property = new StringBuilder("\tprotected $");
+		property
+			.append(attribute.getIdentifier())
+			.append(';');
+		return property.toString();
 	}
 	
 	protected String getNamespace(Model model) {
 		String modelIdentifier = model.getIdentifier();
-		return LOWER_CAMEL.to(UPPER_CAMEL, modelIdentifier);
+		return LOWER_UNDERSCORE.to(UPPER_CAMEL, modelIdentifier);
 	}
 	
 	protected String getPopoFilename(Entity entity, String outputDirectory) {
-		return outputDirectory + '/' + LOWER_CAMEL.to(UPPER_CAMEL, entity.getIdentifier()) + ".php";
+		return outputDirectory + '/' + LOWER_UNDERSCORE.to(UPPER_CAMEL, entity.getIdentifier()) + ".php";
 	}
 
 }

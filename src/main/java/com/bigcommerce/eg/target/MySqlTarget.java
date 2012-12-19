@@ -52,7 +52,7 @@ public class MySqlTarget extends AbstractTarget {
 	
 	protected String generateCreateTable(Entity entity) {
 		StringBuilder create = new StringBuilder("CREATE TABLE ");
-		create.append(LOWER_CAMEL.to(LOWER_UNDERSCORE, entity.getIdentifier()))
+		create.append(entity.getIdentifier())
 			.append("(")
 			.append(lineSeparator);
 		
