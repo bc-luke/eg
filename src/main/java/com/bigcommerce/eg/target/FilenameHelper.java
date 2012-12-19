@@ -16,8 +16,9 @@ public class FilenameHelper {
 	
 	public static boolean prepareDirectoryForFilename(String filename) {
 		File file = new File(filename);
-		file.getParentFile();
-		return file.mkdirs();
+		File parentFile = file.getParentFile();
+		boolean result = parentFile.mkdirs();
+		return result;
 	}
 	
 	protected static String getSourceFileParent(CommonTree tree) {

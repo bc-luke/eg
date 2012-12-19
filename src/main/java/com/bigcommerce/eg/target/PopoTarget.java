@@ -6,7 +6,10 @@ import java.util.List;
 import com.bigcommerce.eg.GenerationException;
 import com.bigcommerce.eg.ast.Attribute;
 import com.bigcommerce.eg.ast.Entity;
+import com.bigcommerce.eg.ast.IntAttribute;
 import com.bigcommerce.eg.ast.Model;
+import com.bigcommerce.eg.ast.StringAttribute;
+
 import static com.google.common.base.CaseFormat.*;
 
 public class PopoTarget extends AbstractTarget {
@@ -17,9 +20,10 @@ public class PopoTarget extends AbstractTarget {
 
 		String namespace = getNamespace(model);
 		for (Entity entity : model.getEntities()) {
-			String popoOutputName = getPopoFilename(entity, outputDirectory);
+			String popoOutputName = getPopoFilename(model, entity, outputDirectory);
 			String popo = generatePopo(entity, namespace);
 			try {
+				FilenameHelper.prepareDirectoryForFilename(popoOutputName);
 		        FileWriter outputStream = new FileWriter(popoOutputName);
 		        outputStream.write(popo.toString());
 		        outputStream.close();
@@ -70,6 +74,31 @@ public class PopoTarget extends AbstractTarget {
 	}
 	
 	protected String generateProperty(Attribute attribute) {
+		if (attribute instanceof IntAttribute) {
+			return "  " + generateIntProperty((IntAttribute)attribute);
+		} else if (attribute instanceof StringAttribute) {
+			return "  " + generateStringProperty((StringAttribute)attribute);
+		} else {
+			return "";
+		}
+	}
+	
+	protected String generateStringProperty(StringAttribute attribute) {
+		StringBuilder property = new StringBuilder("\tprotected $");
+		property.append(LOWER_UNDERSCORE.to(LOWER_CAMEL, attribute.getIdentifier()));
+		
+		if (attribute.hasDefaultValue()) {
+			property
+				.append(" = \"")
+				.append(attribute.getDefaultValue())
+				.append("\"");
+		}
+		
+		property.append(';');
+		return property.toString();
+	}
+	
+	protected String generateIntProperty(IntAttribute attribute) {
 		StringBuilder property = new StringBuilder("\tprotected $");
 		property
 			.append(LOWER_UNDERSCORE.to(LOWER_CAMEL, attribute.getIdentifier()))
@@ -124,8 +153,8 @@ public class PopoTarget extends AbstractTarget {
 		return LOWER_UNDERSCORE.to(UPPER_CAMEL, modelIdentifier);
 	}
 	
-	protected String getPopoFilename(Entity entity, String outputDirectory) {
-		return outputDirectory + '/' + LOWER_UNDERSCORE.to(UPPER_CAMEL, entity.getIdentifier()) + ".php";
+	protected String getPopoFilename(Model model, Entity entity, String outputDirectory) {
+		return outputDirectory + '/' + getNamespace(model) + '/' + LOWER_UNDERSCORE.to(UPPER_CAMEL, entity.getIdentifier()) + ".php";
 	}
 
 }

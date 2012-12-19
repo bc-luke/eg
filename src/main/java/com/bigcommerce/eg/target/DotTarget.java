@@ -36,6 +36,7 @@ public class DotTarget extends AbstractTarget {
         // Create the output file and write the dot spec to it
         //
         try {
+        	FilenameHelper.prepareDirectoryForFilename(dotOutputName);
 	        FileWriter outputStream = new FileWriter(dotOutputName);
 	        outputStream.write(st.toString());
 	        outputStream.close();

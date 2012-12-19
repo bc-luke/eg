@@ -36,6 +36,7 @@ public class MySqlTarget extends AbstractTarget {
 		}
 		
 		try {
+			FilenameHelper.prepareDirectoryForFilename(sqlOutputName);
 	        FileWriter outputStream = new FileWriter(sqlOutputName);
 	        outputStream.write(sql.toString());
 	        outputStream.close();

@@ -26,6 +26,8 @@ class Main {
 
     private static boolean makeDot = true;
 
+    private static String outputDirectory = "/Users/luke.eller/model";
+    
     static  EgLexer lexer;
 
     /** Just a simple test driver for the ASP parser
@@ -205,15 +207,15 @@ class Main {
                 }
                 
                 Target mySqlTarget = new MySqlTarget();
-                mySqlTarget.generate(model);
+                mySqlTarget.generate(model, outputDirectory);
                 
                 Target popoTarget = new PopoTarget();
-                popoTarget.generate(model);
+                popoTarget.generate(model, outputDirectory);
                 
                 if  (makeDot && tokens.size() < 4096)
                 {
                 	Target dotTarget = new DotTarget();
-                	dotTarget.generate(model);
+                	dotTarget.generate(model, outputDirectory);
                 }
             }
             catch (FileNotFoundException ex)
