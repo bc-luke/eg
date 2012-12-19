@@ -12,11 +12,6 @@ import com.bigcommerce.eg.ast.Model;
 import com.bigcommerce.eg.ast.StringAttribute;
 
 public class MySqlTarget extends AbstractTarget {
-	
-	@Override
-	public void generate(Model model) throws GenerationException {
-		
-	}
 
 	@Override
 	public void generate(Model model, String outputDirectory)
@@ -55,7 +50,7 @@ public class MySqlTarget extends AbstractTarget {
 		create.append(entity.getIdentifier());
 		
 		List<Attribute> attributes = entity.getAttributes();
-		if (attributes.size() < 1) {
+		if (attributes.size() > 0) {
 			
 			create
 				.append("(")

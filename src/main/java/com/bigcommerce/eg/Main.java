@@ -24,7 +24,7 @@ import com.bigcommerce.eg.EgTree;
  */
 class Main {
 
-    private static boolean makeDot = false;
+    private static boolean makeDot = true;
 
     static  EgLexer lexer;
 
