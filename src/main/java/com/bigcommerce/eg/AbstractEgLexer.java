@@ -7,7 +7,7 @@ import org.antlr.runtime.RecognizerSharedState;
 /**
 
  * This is the super class for the lexer. It is extended by the lexer class
- * generated from TLexer.g.
+ * generated from EgLexer.g.
  *
  * Do not place code and declarations in the lexer .g files, use
  * a superclass like this and place all the support methods and

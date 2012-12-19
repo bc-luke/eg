@@ -5,13 +5,18 @@ import org.antlr.runtime.tree.*;
 import org.antlr.stringtemplate.*;
 
 import java.io.*;
+
 import com.bigcommerce.eg.EgParser.model_return;
+
+import com.bigcommerce.eg.EgLexer;
+import com.bigcommerce.eg.EgParser;
+import com.bigcommerce.eg.EgTree;
 
 
 /**
- * Test driver program for the ANTLR3 Maven Archetype demo
+ * A test driver program for Entity Generator.
  *
- * @author Jim Idle (jimi@temporal-wave.com)
+ * @author Luke Eller (luke.eller@bigcommerce.com)
  */
 class Main {
 
@@ -50,7 +55,7 @@ class Main {
                 }
                 else
                 {
-                    System.err.println("Usage: java -jar eg-0.0.1-SNAPSHOT-jar-with-dependencies.jar <directory | filename.dmo>");
+                    System.err.println("Usage: java -jar cg-0.0.1-SNAPSHOT-jar-with-dependencies.jar <directory | filename.dmo>");
                 }
             }
             catch (Exception ex)
@@ -150,8 +155,10 @@ class Main {
                 //
                 System.out.println("    Parser Start");
                 long pStart = System.currentTimeMillis();
+
                 model_return psrReturn = parser.model();
                 System.out.println(((Tree) psrReturn.tree).toStringTree());
+
                 long stop = System.currentTimeMillis();
                 System.out.println("      Parsed in " + (stop - pStart) + "ms.");
 

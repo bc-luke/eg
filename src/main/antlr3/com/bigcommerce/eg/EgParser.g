@@ -41,7 +41,6 @@ tokens {
     package com.bigcommerce.eg;
 }
 
-
 model
     : entity* -> ^(MODEL entity*)
     ;
@@ -65,3 +64,4 @@ intType
 stringType
    : STRING (LPAREN INTEGER_LITERAL RPAREN)? (EQUALS STRING_LITERAL)?
    ;
+
