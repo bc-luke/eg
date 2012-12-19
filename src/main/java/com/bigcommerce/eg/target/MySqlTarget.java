@@ -2,14 +2,14 @@ package com.bigcommerce.eg.target;
 
 import java.io.FileWriter;
 
+import java.util.List;
+
 import com.bigcommerce.eg.GenerationException;
 import com.bigcommerce.eg.ast.Attribute;
 import com.bigcommerce.eg.ast.Entity;
 import com.bigcommerce.eg.ast.IntAttribute;
 import com.bigcommerce.eg.ast.Model;
 import com.bigcommerce.eg.ast.StringAttribute;
-
-import static com.google.common.base.CaseFormat.*;
 
 public class MySqlTarget extends AbstractTarget {
 	
@@ -52,25 +52,31 @@ public class MySqlTarget extends AbstractTarget {
 	
 	protected String generateCreateTable(Entity entity) {
 		StringBuilder create = new StringBuilder("CREATE TABLE ");
-		create.append(entity.getIdentifier())
-			.append("(")
-			.append(lineSeparator);
+		create.append(entity.getIdentifier());
 		
-		boolean isFirst = true;
-		for (Attribute attribute : entity.getAttributes()) {
-			if (!isFirst) {
-				create
-					.append(",")
-					.append(lineSeparator);
+		List<Attribute> attributes = entity.getAttributes();
+		if (attributes.size() < 1) {
+			
+			create
+				.append("(")
+				.append(lineSeparator);
+			
+			boolean isFirst = true;
+			for (Attribute attribute : attributes) {
+				if (!isFirst) {
+					create
+						.append(",")
+						.append(lineSeparator);
+				}
+				create.append(generateColumn(attribute));
+				if (isFirst) {
+					isFirst = false;
+				}
 			}
-			create.append(generateColumn(attribute));
-			if (isFirst) {
-				isFirst = false;
-			}
+			create
+				.append(lineSeparator)
+				.append(");");
 		}
-		create
-			.append(lineSeparator)
-			.append(");");
 		return create.toString();
 	}
 	

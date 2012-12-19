@@ -205,15 +205,15 @@ class Main {
                 }
                 
                 Target mySqlTarget = new MySqlTarget();
-                mySqlTarget.generate(model, "/Users/luke.eller/model");
+                mySqlTarget.generate(model);
                 
                 Target popoTarget = new PopoTarget();
-                popoTarget.generate(model, "/Users/luke.eller/model");
+                popoTarget.generate(model);
                 
                 if  (makeDot && tokens.size() < 4096)
                 {
                 	Target dotTarget = new DotTarget();
-                	dotTarget.generate(model, "/Users/luke.eller/model");
+                	dotTarget.generate(model);
                 }
             }
             catch (FileNotFoundException ex)
