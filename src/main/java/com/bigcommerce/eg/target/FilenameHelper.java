@@ -14,6 +14,12 @@ public class FilenameHelper {
 		return FilenameHelper.getSimpleFilename(tree, extension, FilenameHelper.getSourceFileParent(tree));
 	}
 	
+	public static boolean prepareDirectoryForFilename(String filename) {
+		File file = new File(filename);
+		file.getParentFile();
+		return file.mkdirs();
+	}
+	
 	protected static String getSourceFileParent(CommonTree tree) {
 		String source = tree.getToken().getInputStream().getSourceName();
 		File file = new File(source);
