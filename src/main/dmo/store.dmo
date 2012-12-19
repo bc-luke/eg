@@ -4,4 +4,8 @@ store {
         first_name: string(255) = "Arnold"
         last_name: string(255) = "Schwarzenegger"
 	}
+	brand {
+        id*: int
+        name: string(255) = "Harley Davidson"
+	}
 }

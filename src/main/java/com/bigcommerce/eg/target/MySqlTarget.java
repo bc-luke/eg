@@ -71,7 +71,8 @@ public class MySqlTarget extends AbstractTarget {
 			}
 			create
 				.append(lineSeparator)
-				.append(");");
+				.append(");")
+				.append(lineSeparator);
 		}
 		return create.toString();
 	}
