@@ -66,8 +66,7 @@ public class PopoTarget extends AbstractTarget {
 		
 		popo.append(lineSeparator)
 			.append('}');
-		
-		
+
 		return popo.toString();
 	}
 	
