@@ -9,18 +9,13 @@ import org.antlr.stringtemplate.StringTemplate;
 import com.bigcommerce.eg.GenerationException;
 import com.bigcommerce.eg.ast.Model;
 
-public class DotTarget implements Target {
+public class DotTarget extends AbstractTarget {
 
 	protected DOTTreeGenerator dotTreeGenerator;
 	
 	public DotTarget() {
 		super();
 		this.dotTreeGenerator= new DOTTreeGenerator();
-	}
-	
-	@Override
-	public void generate(Model model) throws GenerationException {
-        generate(model, FilenameHelper.getSourceFileParent(model));
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import com.bigcommerce.eg.ast.StringAttribute;
 
 import static com.google.common.base.CaseFormat.*;
 
-public class MySqlTarget extends FileTarget {
+public class MySqlTarget extends AbstractTarget {
 	
 	@Override
 	public void generate(Model model) throws GenerationException {
@@ -23,7 +23,18 @@ public class MySqlTarget extends FileTarget {
 			throws GenerationException {
 		String sqlOutputName = FilenameHelper.getSimpleFilename(model, "sql", outputDirectory);
 		
-		StringBuilder sql = new StringBuilder("CREATE DATABASE " + model.getIdentifier() + ';' + lineSeparator);
+		String modelIdentifier = model.getIdentifier();
+		
+		StringBuilder sql = new StringBuilder("CREATE DATABASE ");
+		
+		sql
+			.append(modelIdentifier)
+			.append(';')
+			.append(lineSeparator)
+			.append("USE ")
+			.append(modelIdentifier)
+			.append(';')
+			.append(lineSeparator);
 		
 		for (Entity entity : model.getEntities()) {
 			sql.append(generateCreateTable(entity));
@@ -34,7 +45,7 @@ public class MySqlTarget extends FileTarget {
 	        outputStream.write(sql.toString());
 	        outputStream.close();
         } catch (Exception e) {
-        	throw new GenerationException("Could not write the dot spec", e);
+        	throw new GenerationException("Could not write the SQL", e);
         }
 		
 	}
@@ -92,8 +103,9 @@ public class MySqlTarget extends FileTarget {
 		}
 		if (attribute.hasDefaultValue()) {
 			column
-				.append(" DEFAULT ")
-				.append(attribute.getDefaultValue());
+				.append(" DEFAULT '")
+				.append(attribute.getDefaultValue())
+				.append('\'');
 		}
 		column.append(generateColumnModifiers(attribute));
 		return column.toString();
@@ -106,7 +118,7 @@ public class MySqlTarget extends FileTarget {
 			modifiers.append(" NOT NULL");
 		}
 		if (attribute.getIdentifier().equals("id")) {
-			modifiers.append(" PRIMARY KEY");
+			modifiers.append(" PRIMARY KEY AUTO_INCREMENT");
 		}
 		return modifiers.toString();
 	}
