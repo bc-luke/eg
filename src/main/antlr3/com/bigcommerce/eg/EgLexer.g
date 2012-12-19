@@ -36,7 +36,6 @@ COMMA  : ',';
 DOT    : '.';
 EQUALS : '=';
 
-<<<<<<< HEAD
 INT    : 'int';
 STRING : 'string';
 
