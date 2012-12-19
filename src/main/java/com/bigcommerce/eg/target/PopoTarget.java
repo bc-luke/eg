@@ -44,7 +44,7 @@ public class PopoTarget extends AbstractTarget {
 			.append(lineSeparator)
 			.append("class ")
 			.append(LOWER_CAMEL.to(UPPER_CAMEL, entity.getIdentifier()))
-			.append('{')
+			.append(" {")
 			.append(lineSeparator);
 		
 		for (Attribute attribute : entity.getAttributes()) {
